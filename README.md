@@ -1,25 +1,10 @@
-Access the one-time URL you received when bootstraping Wavefront to see Zipkin traces and other monitoring of your microservices:
+### SetUp to pull from Images Ued in this deme
 
-![Wavefront dashboard scree](./docs/wavefront-summary.png)
-
-Since we've included `brave.mysql8` in our `pom.xml`, the traces even show the various DB queries traces:
-
-![Wavefront dashboard scree](./docs/wavefront-traces.png)
-
-
-
-## Compiling and pushing to Kubernetes
-
-This get a little bit more complicated when deploying to Kubernetes, since we need to manage Docker images, exposing services and more yaml. But we can pull through!
-
-### Choose your Docker registry
-
-You need to define your target Docker registry. Make sure you're already logged in by running `docker login <endpoint>` or `docker login` if you're just targeting Docker hub.
-
-Setup an env varible to target your Docker registry. If you're targeting Docker hub, simple provide your username, for example:
+Setup an env varible to target the Docker registry.
 
 ```
-export REPOSITORY_PREFIX=odedia
+export DOCKERUSER=benhtodd
+export REPOSITORY=spring_petclinic
 ```
 
 For other Docker registries, provide the full URL to your repository, for example:
@@ -28,37 +13,32 @@ For other Docker registries, provide the full URL to your repository, for exampl
 export REPOSITORY_PREFIX=harbor.myregistry.com/demo
 ```
 
-One of the neat features in Spring Boot 2.3 is that it can leverage [Cloud Native Buildpacks](https://buildpacks.io) and [Paketo Buildpacks](https://paketo.io) to build production-ready images for us. Since we also configured the `spring-boot-maven-plugin` to use `layers`, we'll get optimized layering of the various components that build our Spring Boot app for optimal image caching. What this means in practice is that if we simple change a line of code in our app, it would only require us to push the layer containing our code and not the entire uber jar. To build all images and pushing them to your registry, run:
-
-```
-mvn spring-boot:build-image -Pk8s -DREPOSITORY_PREFIX=${REPOSITORY_PREFIX} && ./scripts/pushImages.sh
-```
-
-Since these are standalone microservices, you can also `cd` into any of the project folders and build it indivitually (as well as push it to the registry).
-
-You should now have all your images in your Docke registry. It might be good to make sure you can see them available.
-
-Make sure you're targeting your Kubernetes cluster
-
 ### Setting things up in Kubernetes
 
-Create the `spring-petclinic` namespace for Spring petclinic:
+We will need to create some namespaces, and while we are at it we can create the services the petclinc app uses. For convienence we have put them all in one folder call init-app
 
 ```
-kubectl apply -f k8s/init-namespace/ 
+kubectl apply -f k8s/init-app/ 
 ```
+### Verify Environent so far
 
-Create a Kubernetes secret to store the URL and API Token of Wavefront (replace values with your own real ones):
-
-```
-kubectl create secret generic wavefront -n spring-petclinic --from-literal=wavefront-url=https://wavefront.surf --from-literal=wavefront-api-token=2e41f7cf-1111-2222-3333-7397a56113ca
-```
-
-Create the Wavefront proxy pod, and the various Kubernetes services that will be used later on by our deployments:
+Verify the namespace creation
 
 ```
-kubectl apply -f k8s/init-services
+✗  k get ns
+NAME                           STATUS   AGE
+default                        Active   4d22h
+kube-node-lease                Active   4d22h
+kube-public                    Active   4d22h
+kube-system                    Active   4d22h
+spring-petclinic               Active   42h
+vmware-system-auth             Active   4d22h
+vmware-system-cloud-provider   Active   4d22h
+vmware-system-csi              Active   4d22h
+vmware-system-tmc              Active   4d22h
+wavefront                      Active   42h
 ```
+
 
 Verify the services are available:
 
@@ -72,18 +52,32 @@ visits-service      ClusterIP      10.7.251.227   <none>        8080/TCP        
 wavefront-proxy     ClusterIP      10.7.253.85    <none>        2878/TCP,9411/TCP   37s
 ```
 
-Verify the wavefront proxy is running:
+### Deploy Wavefront Proxy to Cluster in wavefront namespace
 
-```
-✗ kubectl get pods -n spring-petclinic
-NAME                              READY   STATUS    RESTARTS   AGE
-wavefront-proxy-dfbd4b695-fdd6t   1/1     Running   0          36s
+We are going to use Helm to install the wavefront proxy.
 
-```
+We have already create the wavefront namespace so now we need to add the wavefront repository and update helm on your machine
+
+'''
+helm repo add wavefront https://wavefronthq.github.io/helm/ && helm repo update
+'''
+
+Now we can run the helm chart to deploy the wwavefront-proxy
+
+'''
+helm install wavefront wavefront/wavefront --namespace wavefront \
+    --set clusterName=<your student id> \
+    --set wavefront.url=https://longboard.wavefront.com \
+    --set wavefront.token=40e8df97-34b4-4946-a10d-f61f8e6888c7 \
+    --set projectPacific.enabled=true \
+    --set proxy.traceZipkinApplicationName=spring-petclinic \
+    --set proxy.zipkinPort=9411 \
+    --set collector.logLevel=info
+'''
 
 ### Settings up databases with helm
 
-We'll now need to deploy our databases. For that, we'll use helm. You'll need helm 3 and above since we're not using Tiller in this deployment.
+We'll now need to deploy our databases. For that, we'll use helm again. You'll need helm 3 and above since we're not using Tiller in this deployment.
 
 Make sure you have a single `default` StorageClass in your Kubernetes cluster:
 
@@ -146,7 +140,13 @@ You should also see monitoring and traces from Wavefront under the application n
 ![Wavefront dashboard scree](./docs/wavefront-k8s.png)
 
 
+Access the one-time URL you received when bootstraping Wavefront to see Zipkin traces and other monitoring of your microservices:
 
+![Wavefront dashboard scree](./docs/wavefront-summary.png)
+
+Since we've included `brave.mysql8` in our `pom.xml`, the traces even show the various DB queries traces:
+
+![Wavefront dashboard scree](./docs/wavefront-traces.png)
 
 
 
