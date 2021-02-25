@@ -1,0 +1,15 @@
+helm repo add wavefront https://wavefronthq.github.io/helm/ && helm repo update
+
+
+
+helm install wavefront wavefront/wavefront --namespace wavefront \
+    --set clusterName=student-01 \
+    --set wavefront.url=https://longboard.wavefront.com \
+    --set wavefront.token=40e8df97-34b4-4946-a10d-f61f8e6888c7 \
+    --set projectPacific.enabled=true \
+    --set proxy.traceZipkinApplicationName=spring-petclinic \
+    --set proxy.zipkinPort=9411 \
+    --set collector.logLevel=info
+
+
+    helm uninstall wavefront wavefront/wavefront --namespace wavefront
