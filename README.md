@@ -77,15 +77,14 @@ helm install wavefront wavefront/wavefront --namespace wavefront \
 
 ### Settings up databases with helm
 
-We'll now need to deploy our databases. For that, we'll use helm again. You'll need helm 3 and above since we're not using Tiller in this deployment.
+We'll now need to deploy our databases. For that, we'll use helm again.
 
 Make sure you have a single `default` StorageClass in your Kubernetes cluster:
 
 ```
 ✗ kubectl get sc
-NAME                 PROVISIONER            AGE
-standard (default)   kubernetes.io/gce-pd   6h11m
-
+NAME                                PROVISIONER              RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+vsphere-with-kubernetes (default)   csi.vsphere.vmware.com   Delete          Immediate           true                   4d23h
 ```
 
 Deploy the databases:
