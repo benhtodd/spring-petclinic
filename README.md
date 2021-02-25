@@ -64,7 +64,7 @@ helm repo add wavefront https://wavefronthq.github.io/helm/ && helm repo update
 
 Now we can run the helm chart to deploy the wwavefront-proxy
 
-'''
+```
 helm install wavefront wavefront/wavefront --namespace wavefront \
     --set clusterName=<your student id> \
     --set wavefront.url=https://longboard.wavefront.com \
@@ -73,7 +73,7 @@ helm install wavefront wavefront/wavefront --namespace wavefront \
     --set proxy.traceZipkinApplicationName=spring-petclinic \
     --set proxy.zipkinPort=9411 \
     --set collector.logLevel=info
-'''
+```
 
 ### Settings up databases with helm
 
@@ -98,6 +98,15 @@ helm install customers-db-mysql bitnami/mysql --namespace spring-petclinic  --ve
 ```
 
 ### Deploying the application
+
+
+1. First we need the images to be used.
+
+Run the pull script in ./scripts to pull working images from dockerhub (this can be skipped if you want to deploy directly from dockerhub)
+
+'''
+./script/pullImagees.sh
+'''
 
 Our deployment YAMLs have a placeholder called `REPOSITORY_PREFIX` so we'll be able to deploy the images from any Docker registry. Sadly, Kubernetes doesn't support environment variables in the YAML descriptors. We have a small script to do it for us and run our deployments:
 
@@ -136,16 +145,16 @@ You can now brose to that IP in your browser and see the application running.
 
 You should also see monitoring and traces from Wavefront under the application name `spring-petclinic-k8s`:
 
-![Wavefront dashboard scree](./docs/wavefront-k8s.png)
+![Wavefront dashboard scree](./readme-png/wavefront-k8s.png)
 
 
 Access the one-time URL you received when bootstraping Wavefront to see Zipkin traces and other monitoring of your microservices:
 
-![Wavefront dashboard scree](./docs/wavefront-summary.png)
+![Wavefront dashboard scree](./readme-png/wavefront-summary.png)
 
 Since we've included `brave.mysql8` in our `pom.xml`, the traces even show the various DB queries traces:
 
-![Wavefront dashboard scree](./docs/wavefront-traces.png)
+![Wavefront dashboard scree](./readme-png/wavefront-traces.png)
 
 
 
@@ -157,7 +166,7 @@ have been instrumented with [MicroMeter](https://micrometer.io) to collect JVM a
 
 A JMeter load testing script is available to stress the application and generate metrics: [petclinic_test_plan.jmx](spring-petclinic-api-gateway/src/test/jmeter/petclinic_test_plan.jmx)
 
-![Grafana metrics dashboard](docs/grafana-custom-metrics-dashboard.png)
+![Grafana metrics dashboard](readme-png/grafana-custom-metrics-dashboard.png)
 
 ### Using Prometheus
 
