@@ -1,18 +1,3 @@
-### SetUp to pull from Images Ued in this deme
-
-Setup an env varible to target the Docker registry.
-
-```
-export DOCKERUSER=benhtodd
-export REPOSITORY=spring_petclinic
-```
-
-For other Docker registries, provide the full URL to your repository, for example:
-
-```
-export REPOSITORY_PREFIX=harbor.myregistry.com/demo
-```
-
 ### Setting things up in Kubernetes
 
 We will need to create some namespaces, and while we are at it we can create the services the petclinc app uses. For convienence we have put them all in one folder call init-app
@@ -68,7 +53,7 @@ Now we can run the helm chart to deploy the wwavefront-proxy
 helm install wavefront wavefront/wavefront --namespace wavefront \
     --set clusterName=<your student id> \
     --set wavefront.url=https://longboard.wavefront.com \
-    --set wavefront.token=40e8df97-34b4-4946-a10d-f61f8e6888c7 \
+    --set wavefront.token=<wavefront token> \
     --set projectPacific.enabled=true \
     --set proxy.traceZipkinApplicationName=spring-petclinic \
     --set proxy.zipkinPort=9411 \
@@ -97,15 +82,35 @@ helm install visits-db-mysql bitnami/mysql --namespace spring-petclinic  --versi
 helm install customers-db-mysql bitnami/mysql --namespace spring-petclinic  --version 6.14.3 --set db.name=service_instance_db
 ```
 
-### Deploying the application
+### SetUp to pull from Images Ued in this deme
 
+Setup an env varible to target the Docker registry.
 
-1. First we need the images to be used.
+```
+export DOCKERUSER=benhtodd
+export REPOSITORY=spring_petclinic
+```
+
+For other Docker registries, provide the full URL to your repository, for example:
+
+```
+export REPOSITORY_PREFIX=harbor.myregistry.com/demo
+```
+
+Now we can pull the images to be used.
 
 Run the pull script in ./scripts to pull working images from dockerhub (this can be skipped if you want to deploy directly from dockerhub)
 
 '''
-./script/pullImagees.sh
+./script/p
+
+
+### Deploying the application
+
+
+
+
+ullImagees.sh
 '''
 
 Our deployment YAMLs have a placeholder called `REPOSITORY_PREFIX` so we'll be able to deploy the images from any Docker registry. Sadly, Kubernetes doesn't support environment variables in the YAML descriptors. We have a small script to do it for us and run our deployments:

@@ -18,7 +18,7 @@ spec:
         app: api-gateway
     spec:
       containers:
-      - image: r  
+      - image: registry.lab.livefire.dev/observe/api-gateway:1.0
         name: api-gateway
         imagePullPolicy: Always
         livenessProbe:
