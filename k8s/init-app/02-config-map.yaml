@@ -18,7 +18,7 @@ data:
 
     wavefront:
       application:
-        name: spring-petclinic-k8s
+        name: new-petclinic
       freemium-account: true
 
     # Logging
