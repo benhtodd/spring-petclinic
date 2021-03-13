@@ -1,18 +1,36 @@
+Add meter to your machine
+From /home/<user>
+
+In terminal run
+
 ```
 wget https://mirrors.gigenet.com/apache//jmeter/binaries/apache-jmeter-5.4.1.zip
 unzip apache-jmeter-5.4.1.zip
 ```
-
+Now move the jmeter folder to /opt/ and set a soflt link from /opt/ to user
 
 ````
 sudo mv apache-jmeter-5.4.1 /opt/
 sudo ln -s /opt/apache-jmeter-5.4.1/bin/jmeter /usr/local/bin/jmeter
+
+Download jmeter plugins manager from:
+
+ https://jmeter-plugins.org/install/Install/
+
+ And move it to the jmeter install dir '/lib/etx'
+
 ```
 sudo mv jmeter-plugins-manager-1.6.jar /opt/apache-jmeter-5.4.1/lib/ext
+```
 
+Open the petclinic jmeter test plan from the terminal.
+
+This will open the jmeter gui
+
+Rrom outside the spring-petlicic project directory
 
 ```
 jmeter -t ./spring-petclinic/jmeter/petclinic_test_plan.jmx
 ```
 
-
+![jmeter gui](./readme-png/hmeter.gui.1.png)
