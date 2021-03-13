@@ -31,4 +31,4 @@ Rrom outside the spring-petlicic project directory
 jmeter -t ./spring-petclinic/jmeter/petclinic_test_plan.jmx
 ```
 
-![jmeter gui](./readme-png/jmeter.gui.1.png)
+![jmeter gui](../readme-png/jmeter.gui.1.png)
