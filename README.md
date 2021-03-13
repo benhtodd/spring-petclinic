@@ -1,3 +1,11 @@
+## The Point of this Repo is to supply an easy Microservices Tracing Demo for Tanzu Observability Powered by Wavefront##
+
+It should be deployable to any kubernetes environment. minikube, aks, TKG, etc.
+
+That said, a TKGs (Tanzu Kubernetes Grid on vSphere 7) was used during the devlopment of this project, so some data may not match what you see exactly in your environment.
+
+
+
 ### Setting things up in Kubernetes
 
 We will need to create some namespaces, and while we are at it we can create the services the petclinc app uses. For convienence we have put them all in one folder call init-app
@@ -43,9 +51,9 @@ We are going to use Helm to install the wavefront proxy.
 
 We have already create the wavefront namespace so now we need to add the wavefront repository and update helm on your machine
 
-'''
+```
 helm repo add wavefront https://wavefronthq.github.io/helm/ && helm repo update
-'''
+```
 
 Now we can run the helm chart to deploy the wwavefront-proxy
 
@@ -146,7 +154,7 @@ NAME          TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)        AGE
 api-gateway   LoadBalancer   10.7.250.24   34.1.2.22   80:32675/TCP   18m
 ```
 
-Browse to api-gateway IP in your browser and see the application running.
+Browse to api-gateway EXTERNAL-IP in your browser and see the application running.
 
 ![Petclinic App Main Page](./readme-png/petclinic.app.png)
 
