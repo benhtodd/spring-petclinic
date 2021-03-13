@@ -25,10 +25,17 @@ Open the petclinic jmeter test plan from the terminal.
 
 This will open the jmeter gui
 
-Rrom outside the spring-petlicic project directory
+From outside the spring-petlicic project directory
+
+Run command
 
 ```
 jmeter -t ./spring-petclinic/jmeter/petclinic_test_plan.jmx
 ```
 
+You should then get the jemeter ui
+
 ![jmeter gui](../readme-png/jmeter.gui.1.png)
+
+
+In here you want to change "Server name or IP" to match the External IP of your api-gateway service and set "Port Number to 80

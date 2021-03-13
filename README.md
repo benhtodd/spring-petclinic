@@ -145,8 +145,13 @@ Get the `EXTERNAL-IP` of the API Gateway:
 NAME          TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)        AGE
 api-gateway   LoadBalancer   10.7.250.24   34.1.2.22   80:32675/TCP   18m
 ```
+Before We Open Wavefront to look at the traces being sent, lets use a jmeter test plan to make some microservices pathways lite up
 
-You can now brose to that IP in your browser and see the application running.
+Open [jmeter README](./jmeter/README.MD)
+
+
+
+You can now browse to that IP in your browser and see the application running.
 
 You should also see monitoring and traces from Wavefront under the application name `spring-petclinic-k8s`:
 
