@@ -145,13 +145,19 @@ Get the `EXTERNAL-IP` of the API Gateway:
 NAME          TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)        AGE
 api-gateway   LoadBalancer   10.7.250.24   34.1.2.22   80:32675/TCP   18m
 ```
-Before We Open Wavefront to look at the traces being sent, lets use a jmeter test plan to make some microservices pathways lite up
 
-Open [jmeter README](./jmeter/README.MD)
+Browse to api-gateway IP in your browser and see the application running.
+
+![Petclinic App Main Page](./readme-png/petclinic.app.png)
+
+The goal of this demo is to get Tracing data into Tanzu Observability by Wavefront
+
+Before we Open Wavefront to look at the traces being sent, lets use a jmeter test plan to make some microservices pathways lite up
+
+Open [The jmeter README](./jmeter/README.MD) for this demo
 
 
-
-You can now browse to that IP in your browser and see the application running.
+After you have jemeter running and see some new data show up in the petclinic app browse to api-gateway IP in your browser and see the application running.
 
 You should also see monitoring and traces from Wavefront under the application name `spring-petclinic-k8s`:
 
