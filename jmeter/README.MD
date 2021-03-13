@@ -12,10 +12,8 @@ Now move the jmeter folder to /opt/ and set a soflt link from /opt/ to user
 ````
 sudo mv apache-jmeter-5.4.1 /opt/
 sudo ln -s /opt/apache-jmeter-5.4.1/bin/jmeter /usr/local/bin/jmeter
-
-Download jmeter plugins manager from:
-
- https://jmeter-plugins.org/install/Install/
+```
+Download jmeter plugins manager from: https://jmeter-plugins.org/install/Install/
 
  And move it to the jmeter install dir '/lib/etx'
 
