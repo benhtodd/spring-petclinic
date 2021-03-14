@@ -14,4 +14,20 @@ In the k8s directory you will find all the files you need to deploy the petclini
 ```
 You will want to change the value of **name:** to match what you want reflected in wavefront tracing
 
-In ./spring-petclinic/k8s/ there are four yaml files that will need to be updated to reflect your image repo. *api-gate-deployment.yaml*, *customers-service-deployment.yaml*, *vets-service-deployment.yaml*, and *visits-service-deployment.yaml* all will need to have their Spec -- containers -- image value set to where you pushed the base images to. 
+In ./spring-petclinic/k8s/ there are four yaml files that will need to be updated to reflect your image repo: 
+
+- *api-gate-deployment.yaml*
+- *customers-service-deployment.yaml* 
+- *vets-service-deployment.yaml*
+- *visits-service-deployment.yaml* 
+
+All of these files will need to have their Spec -- containers -- image value set to where you pushed the base images to. 
+
+Example:
+
+```
+spec:
+      containers:
+      - image: <repo>/api-gateway:1.0
+```
+
