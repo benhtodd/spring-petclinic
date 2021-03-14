@@ -10,20 +10,20 @@ Steps to Deploy the Demo
 
 1. #### Grab the Containers Images ####
 
-Open [IMAGES.MD](./IMAGES.MD) for instructions on grabbing the container images
+Open [IMAGES](./IMAGES.MD) for instructions on grabbing the container images
 
 2. #### Modify deployment yaml files for your needs ####
 
-Open [CHANGES.MD](./CHANGES.MD) for those details
+Open [CHANGES](./CHANGES.MD) for those details
 
 
 3. #### Deploy the application ####
 
-Open [DEPLOYAPP.MD](./DEPLOYAPP.MD) for step by step on deploying the application to kubernetes
+Open [DEPLOYAPP](./DEPLOYAPP.MD) for step by step on deploying the application to kubernetes
+
+#### Now that the App Is deployed and runnnig we can get to the POINT
 
 
-
-```
 
 Get the `EXTERNAL-IP` of the API Gateway:
 
@@ -37,16 +37,16 @@ Browse to api-gateway EXTERNAL-IP in your browser and see the application runnin
 
 ![Petclinic App Main Page](./readme-png/petclinic.app.png)
 
-The goal of this demo is to get Tracing data into Tanzu Observability by Wavefront
+As The goal of this demo is to get Tracing data into Tanzu Observability by Wavefront, it would be good if we had some traces. To do that we have provided a jmeter test plan 
 
-Before we Open Wavefront to look at the traces being sent, lets use a jmeter test plan to make some microservices pathways lite up
+4. 
 
 Open [The jmeter README](./jmeter/README.MD) for this demo
 
 
 After you have jemeter running and see some new data show up in the petclinic app browse to api-gateway IP in your browser and see the application running.
 
-You should also see monitoring and traces from Wavefront under the application name `spring-petclinic-k8s`:
+You should also see monitoring and traces from Wavefront under the application name you configurd i.e. `spring-petclinic-k8s`:
 
 ![Wavefront dashboard scree](./readme-png/wavefront-k8s.png)
 
@@ -60,36 +60,7 @@ Since we've included `brave.mysql8` in our `pom.xml`, the traces even show the v
 ![Wavefront dashboard scree](./readme-png/wavefront-traces.png)
 
 
+Future WOrk
 
+Open [PROMETHEUS SETUP](PROMGRAF.MD)
 
-## Custom metrics monitoring
-
-Grafana and Prometheus are included in the `docker-compose.yml` configuration, and the public facing applications
-have been instrumented with [MicroMeter](https://micrometer.io) to collect JVM and custom business metrics.
-
-A JMeter load testing script is available to stress the application and generate metrics: [petclinic_test_plan.jmx](spring-petclinic-api-gateway/src/test/jmeter/petclinic_test_plan.jmx)
-
-![Grafana metrics dashboard](readme-png/grafana-custom-metrics-dashboard.png)
-
-### Using Prometheus
-
-* Prometheus can be accessed from your local machine at http://localhost:9091
-
-### Using Grafana with Prometheus
-
-* An anonymous access and a Prometheus datasource are setup.
-* A `Spring Petclinic Metrics` Dashboard is available at the URL http://localhost:3000/d/69JXeR0iw/spring-petclinic-metrics.
-You will find the JSON configuration file here: [docker/grafana/dashboards/grafana-petclinic-dashboard.json]().
-* You may create your own dashboard or import the [Micrometer/SpringBoot dashboard](https://grafana.com/dashboards/4701) via the Import Dashboard menu item.
-The id for this dashboard is `4701`.
-
-### Custom metrics
-Spring Boot registers a lot number of core metrics: JVM, CPU, Tomcat, Logback... 
-The Spring Boot auto-configuration enables the instrumentation of requests handled by Spring MVC.
-All those three REST controllers `OwnerResource`, `PetResource` and `VisitResource` have been instrumented by the `@Timed` Micrometer annotation at class level.
-
-* `customers-service` application has the following custom metrics enabled:
-  * @Timed: `petclinic.owner`
-  * @Timed: `petclinic.pet`
-* `visits-service` application has the following custom metrics enabled:
-  * @Timed: `petclinic.visit`

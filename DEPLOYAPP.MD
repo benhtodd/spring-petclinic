@@ -87,7 +87,7 @@ vsphere-with-kubernetes (default)   csi.vsphere.vmware.com   Delete          Imm
 
 Deploy the databases:
 
-```bash
+```
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 helm install vets-db-mysql bitnami/mysql --namespace spring-petclinic --version 6.14.3 --set db.name=service_instance_db
@@ -110,7 +110,7 @@ visits-db-mysql-slave-0              1/1     Running   0          11m
 
 4. #### Deploy The Petclinc deployments services
 
-```bash
+```
 kubectl apply -f k8s/api-gateway-deployment.yaml
 kubectl apply -f k8s/customers-service-deployment.yaml
 kubectl apply -f k8s/vets-service-deployment.yaml
@@ -134,3 +134,5 @@ visits-db-mysql-master-0             1/1     Running   0          11m
 visits-db-mysql-slave-0              1/1     Running   0          11m
 visits-service-654fffbcc7-zj2jw      1/1     Running   0          4m2s
 wavefront-proxy-dfbd4b695-fdd6t      1/1     Running   0          14m
+
+Back to Main [README](./README.MD)
