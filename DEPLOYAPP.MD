@@ -108,18 +108,15 @@ vets-db-mysql-master-0               1/1     Running   0          11m
 vets-db-mysql-slave-0                1/1     Running   0          11m
 visits-db-mysql-master-0             1/1     Running   0          11m
 visits-db-mysql-slave-0              1/1     Running   0          11m
+```
 
 4. #### Deploy The Petclinc deployments services
 
 ```
 kubectl apply -f k8s/api-gateway-deployment.yaml
-
 kubectl apply -f k8s/customers-service-deployment.yaml
-
 kubectl apply -f k8s/vets-service-deployment.yaml
-
 kubectl apply -f k8s/visits-service-deployment.yaml
-
 
 ```
 

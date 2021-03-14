@@ -2,7 +2,7 @@
 
 Of this project is to supply an easy Microservices Tracing Demo for Tanzu Observability Powered by Wavefront
 
-It should be deployable to any kubernetes environment. minikube, aks, TKG, etc.
+It should be deployable to any kubernetes environment, minikube, AKS, TKG, etc.
 
 That said, a TKGs (Tanzu Kubernetes Grid on vSphere 7) was used during the development of this project, so some things may not match what you see exactly in your environment.
 
@@ -17,7 +17,7 @@ Open [IMAGES.MD](./IMAGES.MD) for instructions on grabbing the container images
 Open [CHANGES.MD](./CHANGES.MD) for those details
 
 
-3. ### Deploying the application
+3. #### Deploy the application ####
 
 Open [DEPLOYAPP.MD](./DEPLOYAPP.MD) for step by step on deploying the application to kubernetes
 
