@@ -29,3 +29,5 @@ All those three REST controllers `OwnerResource`, `PetResource` and `VisitResour
   * @Timed: `petclinic.pet`
 * `visits-service` application has the following custom metrics enabled:
   * @Timed: `petclinic.visit`
+
+

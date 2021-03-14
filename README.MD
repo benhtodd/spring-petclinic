@@ -62,4 +62,3 @@ Since we've included `brave.mysql8` in our `pom.xml`, the traces even show the v
 Future Work - nothing to see here 
 
 Open [PROMETHEUS SETUP](BAD-PROMGRAF.MD)
-
