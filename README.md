@@ -6,11 +6,13 @@ It should be deployable to any kubernetes environment. minikube, aks, TKG, etc.
 
 That said, a TKGs (Tanzu Kubernetes Grid on vSphere 7) was used during the development of this project, so some things may not match what you see exactly in your environment.
 
-## Grab the Containers Images
+Steps to Deploy the Demo
+
+1. #### Grab the Containers Images ####
 
 Open [IMAGES.MD](./IMAGES.MD) for instructions on grabbing the container images
 
-## Modify deployment yaml files for your needs
+2. #### Modify deployment yaml files for your needs ####
 
 Open [CHANGES.MD](./CHANGES.MD) for those details
 
