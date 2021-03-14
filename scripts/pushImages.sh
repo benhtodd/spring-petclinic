@@ -1,13 +1,18 @@
 #!/bin/bash
-REPOSITORY_HOST=registry.lab.livefire.dev
-REPOSITORY_PREFIX=observe
-IMAGE_TAG=1.0
+#
+# This script is built to push local images to Harbor or another demote docker repo
+#
+TAR_PREFIX=benhtodd
+TAR_IMAGE_TAG=1.0
 
-docker push ${REPOSITORY_HOST}/${REPOSITORY_PREFIX}/api-gateway:${IMAGE_TAG}
-docker push ${REPOSITORY_HOST}/${REPOSITORY_PREFIX}/visits-service:${IMAGE_TAG}
-docker push ${REPOSITORY_HOST}/${REPOSITORY_PREFIX}/vets-service:${IMAGE_TAG}
-docker push ${REPOSITORY_HOST}/${REPOSITORY_PREFIX}/customers-service:${IMAGE_TAG}
-docker push ${REPOSITORY_HOST}/${REPOSITORY_PREFIX}/admin-server:${IMAGE_TAG}
-docker push ${REPOSITORY_HOST}/${REPOSITORY_PREFIX}/discovery-service:${IMAGE_TAG}
-docker push ${REPOSITORY_HOST}/${REPOSITORY_PREFIX}/config-server:${IMAGE_TAG}
+#echo ${TAR_PREFIX}/api-gateway:${TAR_IMAGE_TAG}
+
+
+docker push ${TAR_PREFIX}/api-gateway:${TAR_IMAGE_TAG}
+docker push ${TAR_PREFIX}/visits-service:${TAR_IMAGE_TAG}
+docker push ${TAR_PREFIX}/vets-service:${TAR_IMAGE_TAG}
+docker push ${TAR_PREFIX}/customers-service:${TAR_IMAGE_TAG}
+docker push ${TAR_PREFIX}/admin-server:${TAR_IMAGE_TAG}
+docker push ${TAR_PREFIX}/discovery-service:${TAR_IMAGE_TAG}
+docker push ${TAR_PREFIX}/config-server:${TAR_IMAGE_TAG}
 

@@ -1,13 +1,14 @@
 #!/bin/bash
-REPOSITORY_PREFIX=bkable
-REPOSITORY_HOST=
-IMAGE_TAG=
+#
+#
+# Example
+# SRC_PREFIX=spring-petclinic
+SRC_PREFIX=benhtodd
+IMAGE_TAG=1.0
 
-
-docker pull ${REPOSITORY_PREFIX}/spring-petclinic-api-gateway:latest
-docker pull ${REPOSITORY_PREFIX}/spring-petclinic-visits-service:latest
-docker pull ${REPOSITORY_PREFIX}/spring-petclinic-vets-service:latest
-docker pull ${REPOSITORY_PREFIX}/spring-petclinic-customers-service:latest
-docker pull ${REPOSITORY_PREFIX}/spring-petclinic-admin-server:latest
-docker pull ${REPOSITORY_PREFIX}/spring-petclinic-discovery-server:latest
-docker pull ${REPOSITORY_PREFIX}/spring-petclinic-config-server:latest
+docker pull ${SRC_PREFIX}/api-gateway:${IMAGE_TAG}
+docker pull ${SRC_PREFIX}/visits-service:${IMAGE_TAG}
+docker pull ${SRC_PREFIX}/vets-service:${IMAGE_TAG}
+docker pull ${SRC_PREFIX}/customers-service:${IMAGE_TAG}
+docker pull ${SRC_PREFIX}/admin-server:${IMAGE_TAG}
+docker pull ${SRC_PREFIX}/config-server:${IMAGE_TAG}

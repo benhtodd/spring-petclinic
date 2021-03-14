@@ -1,10 +1,24 @@
-## The Point of this Repo is to supply an easy Microservices Tracing Demo for Tanzu Observability Powered by Wavefront##
+## The Point
+
+Of this project is to supply an easy Microservices Tracing Demo for Tanzu Observability Powered by Wavefront##
 
 It should be deployable to any kubernetes environment. minikube, aks, TKG, etc.
 
 That said, a TKGs (Tanzu Kubernetes Grid on vSphere 7) was used during the devlopment of this project, so some data may not match what you see exactly in your environment.
 
+### Getting the images
+I've built some scripts for pulling the images needed for this demo from my dockerhub "benhtodd". The sceripts are rudamentary but they will get the job done. 
+Convention used:  
+SRC_PREFIX= i.e. benhtodd 
+SRC_IMAGE_TAG=. I only have one version so it's always 1.0 not latest. 
+TAR_PREFIX= Where do you want to send the image. For example habor uses host and repo name so andd example might be "harbor.local/petclinic"
+TAR_IMAGE_TAG= I leave your version tagging up to you of course
 
+### Change kubernetes deployment files to meet your needs
+
+In the k8s directory yuo will find all the files you need to deploy the petclininc app
+
+You will have to make some small changes to the yaml files to match yuor environment
 
 ### Setting things up in Kubernetes
 
