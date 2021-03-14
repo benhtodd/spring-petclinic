@@ -38,14 +38,14 @@ Browse to api-gateway EXTERNAL-IP in your browser and see the application runnin
 
 As The goal of this demo is to get Tracing data into Tanzu Observability by Wavefront, it would be good if we had some traces. To do that we have provided a jmeter test plan 
 
-5. 
-
-Open [The jmeter README](./jmeter/README.MD) for this demo
+5. Open [The jmeter README](./jmeter/README.MD) for this demo
 
 
-After you have jemeter running and see some new data show up in the petclinic app browse to api-gateway IP in your browser and see the application running.
+6. After you have jemeter running properly browse to api-gateway IP in your browser and see the application running.
 
-You should also see monitoring and traces from Wavefront under the application name you configurd i.e. `spring-petclinic-k8s`:
+
+
+7. Open Wavefront and you should see monitoring and traces from Wavefront under the application name you configurd i.e. `spring-petclinic-k8s`:
 
 ![Wavefront dashboard scree](./readme-png/wavefront-k8s.png)
 
