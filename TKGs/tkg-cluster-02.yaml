@@ -1,0 +1,29 @@
+apiVersion: run.tanzu.vmware.com/v1alpha1
+kind: TanzuKubernetesCluster                   
+metadata:
+  # Name of cluster example tkg-cluster-01
+  name: <yourname>-cluster-02
+  # vSphere Workload Management Nameapace to deploy cluster to
+  namespace: observability
+settings:
+  defaultClass: vsphere-with-kubernetes                         
+spec:
+  distribution:
+    version: v1.18                             
+  topology:
+    controlPlane:
+      # Number of Nodes in Controlplane
+      count: 1                                 
+      class: best-effort-xsmall  
+      #vSphere storage class to use get this from vsphere admin  
+      storageClass: vsphere-with-kubernetes 
+    workers:
+      #
+      count: 1                
+      class: best-effort-xsmall
+      #vSphere storage class to use get this from vsphere admin
+      storageClass: vsphere-with-kubernetes 
+  settings:
+    storage:
+    #  classes: ["vsphere-with-kubernetes"]      #Named PVC storage classes
+      defaultClass: vsphere-with-kubernetes     #Default PVC storage class
