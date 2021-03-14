@@ -24,8 +24,7 @@ Open [DEPLOYAPP](./DEPLOYAPP.MD) for step by step on deploying the application t
 #### Now that the App Is deployed and runnnig we can get to the POINT
 
 
-
-Get the `EXTERNAL-IP` of the API Gateway:
+4. Get the `EXTERNAL-IP` of the API Gateway:
 
 ```
 ✗ kubectl get svc -n spring-petclinic api-gateway 
@@ -39,7 +38,7 @@ Browse to api-gateway EXTERNAL-IP in your browser and see the application runnin
 
 As The goal of this demo is to get Tracing data into Tanzu Observability by Wavefront, it would be good if we had some traces. To do that we have provided a jmeter test plan 
 
-4. 
+5. 
 
 Open [The jmeter README](./jmeter/README.MD) for this demo
 
