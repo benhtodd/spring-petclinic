@@ -1,18 +1,21 @@
 ## The Point
 
-Of this project is to supply an easy Microservices Tracing Demo for Tanzu Observability Powered by Wavefront##
+Of this project is to supply an easy Microservices Tracing Demo for Tanzu Observability Powered by Wavefront
 
 It should be deployable to any kubernetes environment. minikube, aks, TKG, etc.
 
-That said, a TKGs (Tanzu Kubernetes Grid on vSphere 7) was used during the devlopment of this project, so some data may not match what you see exactly in your environment.
+That said, a TKGs (Tanzu Kubernetes Grid on vSphere 7) was used during the development of this project, so some things may not match what you see exactly in your environment.
 
 ### Getting the images
-I've built some scripts for pulling the images needed for this demo from my dockerhub "benhtodd". The sceripts are rudamentary but they will get the job done. 
+I've built some scripts for pulling the images needed for this demo from my dockerhub "benhtodd". 
+
+The sceripts are rudamentary but they will get the job done. 
+
 Convention used:  
-SRC_PREFIX= i.e. benhtodd 
-SRC_IMAGE_TAG=. I only have one version so it's always 1.0 not latest. 
-TAR_PREFIX= Where do you want to send the image. For example habor uses host and repo name so andd example might be "harbor.local/petclinic"
-TAR_IMAGE_TAG= I leave your version tagging up to you of course
+**SRC_PREFIX=** i.e. benhtodd 
+**SRC_IMAGE_TAG=** In my dockerhub I will only have one version so it's always 1.0 not latest. 
+**TAR_PREFIX=** Where do you want to send the image. For example harbor uses host and repo name so an example might be "harbor.local/petclinic"
+**TAR_IMAGE_TAG=** I leave your version tagging up to you of course
 
 ### Change kubernetes deployment files to meet your needs
 
