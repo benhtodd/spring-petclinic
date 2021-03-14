@@ -134,5 +134,7 @@ visits-db-mysql-master-0             1/1     Running   0          11m
 visits-db-mysql-slave-0              1/1     Running   0          11m
 visits-service-654fffbcc7-zj2jw      1/1     Running   0          4m2s
 wavefront-proxy-dfbd4b695-fdd6t      1/1     Running   0          14m
+```
 
-Back to Main [README](./README.MD)
+
+Back to Main [README](./README.md)
