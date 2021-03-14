@@ -79,7 +79,7 @@ Use helm to deploy the three databases used by the app
 
 Make sure you have a single `default` StorageClass in your Kubernetes cluster, as these Helm Charts use dynamic persistant volumes.
 
-```
+```bash
 ✗ kubectl get sc
 NAME                                PROVISIONER              RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
 vsphere-with-kubernetes (default)   csi.vsphere.vmware.com   Delete          Immediate           true                   4d23h
@@ -87,7 +87,7 @@ vsphere-with-kubernetes (default)   csi.vsphere.vmware.com   Delete          Imm
 
 Deploy the databases:
 
-```
+```bash
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 helm install vets-db-mysql bitnami/mysql --namespace spring-petclinic --version 6.14.3 --set db.name=service_instance_db
@@ -95,9 +95,9 @@ helm install visits-db-mysql bitnami/mysql --namespace spring-petclinic  --versi
 helm install customers-db-mysql bitnami/mysql --namespace spring-petclinic  --version 6.14.3 --set db.name=service_instance_db
 ```
 
-### Verify the db pods are deployed: ###
+#### Verify the db pods are deployed: ####
 
-```
+```bash
 ✗ kubectl get pods -n spring-petclinic 
 NAME                                 READY   STATUS    RESTARTS   AGE
 customers-db-mysql-master-0          1/1     Running   0          11m
@@ -110,7 +110,7 @@ visits-db-mysql-slave-0              1/1     Running   0          11m
 
 4. #### Deploy The Petclinc deployments services
 
-```
+```bash
 kubectl apply -f k8s/api-gateway-deployment.yaml
 kubectl apply -f k8s/customers-service-deployment.yaml
 kubectl apply -f k8s/vets-service-deployment.yaml
@@ -118,18 +118,7 @@ kubectl apply -f k8s/visits-service-deployment.yaml
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-Verify the pods are deployed:
+#### Verify that all the pods are deployed and running ####
 
 ```bash
 ✗ kubectl get pods -n spring-petclinic 
