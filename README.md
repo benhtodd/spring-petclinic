@@ -34,12 +34,14 @@ In the k8s directory you will find all the files you need to deploy the petclini
         name: <app name>
       freemium-account: true
 ```
+You will want to change the value of **name:** to match what you want reflected in wavefront tracing
+
 In ./spring-petclinic/k8s/ there are four yaml files that will need to be updated to reflect your image repo. *api-gate-deployment.yaml*, *customers-service-deployment.yaml*, *vets-service-deployment.yaml*, and *visits-service-deployment.yaml* all will need to have their Spec -- containers -- image value set to where you pushed the base images to. 
 
-** You Can pull from my docker hub repo benhtodd ** but I assume you will want to move them to your own.
+**You Can pull from my docker hub repo benhtodd** but I assume you will want to move them to your own.
 
 
-Change the value of **name:** to match what you want reflected in wavefront tracing
+
 
 
 
