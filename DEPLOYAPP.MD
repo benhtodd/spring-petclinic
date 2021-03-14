@@ -10,12 +10,10 @@ Remember to modify 02-config-map.yaml as described in [CHANGES.MD](./CHANGES.MD)
 kubectl apply -f k8s/init-app/ 
 ```
 
-### Verify Environent so far
-
-Verify the namespace creation
+#### Verify the namespace creation ####
 
 ```
-✗  k get ns
+✗  kubectl get ns
 NAME                           STATUS   AGE
 default                        Active   4d22h
 kube-node-lease                Active   4d22h
@@ -29,7 +27,7 @@ vmware-system-tmc              Active   4d22h
 wavefront                      Active   42h
 ```
 
-Verify that the services are available:
+#### Verify that the services are available:
 
 ```
 ✗ kubectl get svc -n spring-petclinic
