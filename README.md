@@ -16,9 +16,22 @@ TAR_IMAGE_TAG= I leave your version tagging up to you of course
 
 ### Change kubernetes deployment files to meet your needs
 
-In the k8s directory yuo will find all the files you need to deploy the petclininc app
+In the k8s directory you will find all the files you need to deploy the petclininc app. You will have to make some small changes to the yaml files to match yuour environment. 
 
-You will have to make some small changes to the yaml files to match yuor environment
+./spring-petclinic/k8s/init-app - is for "initializing" your cluster for the app to be deployed. The yamls in there create namespaces and create app services needed. There is one file that needs to be modified for your environment.
+
+02-config-map.yaml - has a block 
+
+```
+    wavefront:
+      application:
+        name: <app name>
+      freemium-account: true
+```
+
+Change the value of **name:** to match what you want reflected in wavefront tracing
+
+
 
 ### Setting things up in Kubernetes
 
