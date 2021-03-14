@@ -1,6 +1,0 @@
-.DS_store
-/k8s/grafana
-/k8s/prometheus
-/k8s/jmeter.log
-/k8s/wavefront/helmnotes
-jmeter.log
