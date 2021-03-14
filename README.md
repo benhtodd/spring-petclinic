@@ -6,128 +6,16 @@ It should be deployable to any kubernetes environment. minikube, aks, TKG, etc.
 
 That said, a TKGs (Tanzu Kubernetes Grid on vSphere 7) was used during the development of this project, so some things may not match what you see exactly in your environment.
 
-### Getting the images
-I've built some scripts for pulling the images needed for this demo from my dockerhub "benhtodd". 
+## Grab the Containers Images
 
-The sceripts are rudamentary but they will get the job done. 
+Open [IMAGES.MD](./IMAGES.MD) for instructions on grabbing the container images
 
-Convention used:  
-**SRC_PREFIX=** i.e. benhtodd
+## Modify deployment yaml files for your needs
 
-**SRC_IMAGE_TAG=** In my dockerhub I will only have one version so it's always 1.0 not latest.
-
-**TAR_PREFIX=** Where do you want to send the image. For example harbor uses host and repo name so an example might be "harbor.local/petclinic"
-
-**TAR_IMAGE_TAG=** I leave your version tagging up to you of course
-
-### Change kubernetes deployment files to meet your needs
-
-In the k8s directory you will find all the files you need to deploy the petclininc app. You will have to make some small changes to the yaml files to match yuour environment. 
-
-./spring-petclinic/k8s/init-app - is for "initializing" your cluster for the app to be deployed. The yamls in there create namespaces and create app services needed. There is one file that needs to be modified for your environment.
-
-02-config-map.yaml - has a block 
-
-```
-    wavefront:
-      application:
-        name: <app name>
-      freemium-account: true
-```
-You will want to change the value of **name:** to match what you want reflected in wavefront tracing
-
-In ./spring-petclinic/k8s/ there are four yaml files that will need to be updated to reflect your image repo. *api-gate-deployment.yaml*, *customers-service-deployment.yaml*, *vets-service-deployment.yaml*, and *visits-service-deployment.yaml* all will need to have their Spec -- containers -- image value set to where you pushed the base images to. 
-
-**You Can pull from my docker hub repo benhtodd** but I assume you will want to move them to your own.
+Open [CHANGES.MD](./CHANGES.MD) for those details
 
 
 
-
-
-
-### Setting things up in Kubernetes
-
-We will need to create some namespaces, and while we are at it we can create the services the petclinc app uses. For convienence we have put them all in one folder call init-app
-
-```
-kubectl apply -f k8s/init-app/ 
-```
-### Verify Environent so far
-
-Verify the namespace creation
-
-```
-✗  k get ns
-NAME                           STATUS   AGE
-default                        Active   4d22h
-kube-node-lease                Active   4d22h
-kube-public                    Active   4d22h
-kube-system                    Active   4d22h
-spring-petclinic               Active   42h
-vmware-system-auth             Active   4d22h
-vmware-system-cloud-provider   Active   4d22h
-vmware-system-csi              Active   4d22h
-vmware-system-tmc              Active   4d22h
-wavefront                      Active   42h
-```
-
-
-Verify the services are available:
-
-```
-✗ kubectl get svc -n spring-petclinic
-NAME                TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
-api-gateway         LoadBalancer   10.7.250.24    <pending>     80:32675/TCP        36s
-customers-service   ClusterIP      10.7.245.64    <none>        8080/TCP            36s
-vets-service        ClusterIP      10.7.245.150   <none>        8080/TCP            36s
-visits-service      ClusterIP      10.7.251.227   <none>        8080/TCP            35s
-wavefront-proxy     ClusterIP      10.7.253.85    <none>        2878/TCP,9411/TCP   37s
-```
-
-### Deploy Wavefront Proxy to Cluster in wavefront namespace
-
-We are going to use Helm to install the wavefront proxy.
-
-We have already create the wavefront namespace so now we need to add the wavefront repository and update helm on your machine
-
-```
-helm repo add wavefront https://wavefronthq.github.io/helm/ && helm repo update
-```
-
-Now we can run the helm chart to deploy the wwavefront-proxy
-
-```
-helm install wavefront wavefront/wavefront --namespace wavefront \
-    --set clusterName=<your student id> \
-    --set wavefront.url=https://longboard.wavefront.com \
-    --set wavefront.token=<wavefront token> \
-    --set projectPacific.enabled=true \
-    --set proxy.traceZipkinApplicationName=spring-petclinic \
-    --set proxy.zipkinPort=9411 \
-    --set collector.logLevel=info
-```
-
-### Settings up databases with helm
-
-We'll now need to deploy our databases. For that, we'll use helm again.
-
-Make sure you have a single `default` StorageClass in your Kubernetes cluster:
-
-```
-✗ kubectl get sc
-NAME                                PROVISIONER              RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
-vsphere-with-kubernetes (default)   csi.vsphere.vmware.com   Delete          Immediate           true                   4d23h
-```
-
-Deploy the databases:
-
-```
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo update
-helm install vets-db-mysql bitnami/mysql --namespace spring-petclinic --version 6.14.3 --set db.name=service_instance_db
-helm install visits-db-mysql bitnami/mysql --namespace spring-petclinic  --version 6.14.3 --set db.name=service_instance_db
-helm install customers-db-mysql bitnami/mysql --namespace spring-petclinic  --version 6.14.3 --set db.name=service_instance_db
-```
 
 ### SetUp to pull from Images Ued in this deme
 
