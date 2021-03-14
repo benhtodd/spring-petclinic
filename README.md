@@ -59,7 +59,7 @@ Since we've included `brave.mysql8` in our `pom.xml`, the traces even show the v
 ![Wavefront dashboard scree](./readme-png/wavefront-traces.png)
 
 
-Future WOrk
+Future Work - nothing to see here 
 
-Open [PROMETHEUS SETUP](PROMGRAF.MD)
+Open [PROMETHEUS SETUP](BAD-PROMGRAF.MD)
 
