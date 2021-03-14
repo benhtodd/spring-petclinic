@@ -2,7 +2,7 @@ apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster                   
 metadata:
   # Name of cluster example tkg-cluster-01
-  name: <yourname>-test-01
+  name: <yourname>-xsmall-01
   # vSphere Workload Management Nameapace to deploy cluster to
   namespace: observability
 settings:
