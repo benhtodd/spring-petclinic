@@ -52,4 +52,4 @@ You should also see new data showing in the app
 
 ![petclinic data](../readme-png/petclinic.data.png)
 
-Back to Main [README](./README.md)
+Back to Main [README](../README.md)
