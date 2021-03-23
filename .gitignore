@@ -3,3 +3,5 @@ k8s/grafana
 k8s/prometheus
 jmeter.log
 .DS_store
+keys/*
+.secrets

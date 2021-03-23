@@ -2,7 +2,7 @@ apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster                   
 metadata:
   # Name of cluster example tkg-cluster-01
-  name: <yourname>-xsmall-01
+  name: toddb-prod-05
   # vSphere Workload Management Nameapace to deploy cluster to
   namespace: observability
 settings:
@@ -14,13 +14,13 @@ spec:
     controlPlane:
       # Number of Nodes in Controlplane
       count: 1                                 
-      class: best-effort-xsmall  
+      class: best-effort-small  
       #vSphere storage class to use get this from vsphere admin  
       storageClass: vsphere-with-kubernetes 
     workers:
       #
-      count: 1                
-      class: best-effort-xsmall
+      count: 2                
+      class: best-effort-xlarge
       #vSphere storage class to use get this from vsphere admin
       storageClass: vsphere-with-kubernetes 
   settings:
