@@ -1,4 +1,4 @@
-## The Point
+## The Point Of It All
 
 Of this project is to supply an easy Microservices Tracing Demo for Tanzu Observability Powered by Wavefront
 
