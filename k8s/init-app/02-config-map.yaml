@@ -18,8 +18,8 @@ data:
 
     wavefront:
       application:
-        name: new-petclinic-toddb
-      freemium-account: true
+        name: spring-petclinic
+      freemium-account: false
 
     # Logging
     logging.level.org.springframework: INFO
