@@ -2,9 +2,9 @@ apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster                   
 metadata:
   # Name of cluster example tkg-cluster-01
-  name: toddb-prod-05
+  name: spas-prod-01
   # vSphere Workload Management Nameapace to deploy cluster to
-  namespace: observability
+  namespace: elasticsky
 settings:
   defaultClass: vsphere-with-kubernetes                         
 spec:
@@ -19,7 +19,7 @@ spec:
       storageClass: vsphere-with-kubernetes 
     workers:
       #
-      count: 2                
+      count: 1                
       class: best-effort-xlarge
       #vSphere storage class to use get this from vsphere admin
       storageClass: vsphere-with-kubernetes 

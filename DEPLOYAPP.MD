@@ -2,7 +2,7 @@
 
 We will need to create some namespaces, and while we are at it we can create the services the petclinc app uses. For convienence we have put them all in one folder call init-app
 
-Remember to modify 02-config-map.yaml as described in [CHANGES.MD](./CHANGES.MD)
+Remember to modify 02-config-map.yaml as described in [CHANGES](./CHANGES.MD)
 
 1. #### Init the cluster ###
 
