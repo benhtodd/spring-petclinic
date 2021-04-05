@@ -56,7 +56,6 @@ helm install wavefront wavefront/wavefront --namespace wavefront \
     --set clusterName=<cluster name> \
     --set wavefront.url=https://<wavefront url>.wavefront.com \
     --set wavefront.token=<wavefront token> \
-    --set projectPacific.enabled=true \
     --set proxy.traceZipkinApplicationName=spring-petclinic \
     --set proxy.zipkinPort=9411 \
     --set collector.logLevel=info

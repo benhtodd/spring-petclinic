@@ -1,18 +1,18 @@
 ### This install is for a lab that uses an Ubuntu Desktop to work from. 
-If you have jemter or need to follow other install direction all you really need is the plan which is is in *spring-petclinic/jmeter* 
+If you have jmeter or need to follow other install direction all you really need is the plan which is is in *spring-petclinic/jmeter* 
 
 1. #### Add jmeter to your machine ####
 
 From "/home/{user}"
 
-Run the commands to download and uppack jmeter
+Run the commands to download and unpack jmeter
 
 ```
 wget https://mirrors.gigenet.com/apache//jmeter/binaries/apache-jmeter-5.4.1.zip
 unzip apache-jmeter-5.4.1.zip
 ```
 
-2. #### Move the jmeter folder to /opt/ and set a soflt link from /opt/ to user ####
+2. #### Move the jmeter folder to /opt/ and set a soft link from /opt/ to user ####
 
 ```
 sudo mv apache-jmeter-5.4.1 /opt/
