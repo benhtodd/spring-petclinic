@@ -1,3 +1,6 @@
+####MUCH MORE IS NEEDED TO GET Velero with RESTIC working this page is a work in progress. It is not complete yet.####
+
+
 
 To install Velero CLI on linux
 
@@ -16,15 +19,11 @@ With Velero 1.4 you need to annotate the Volume you wish to backup
 kubectl -n YOUR_POD_NAMESPACE annotate pod/YOUR_POD_NAME backup.velero.io/backup-volumes=YOUR_VOLUME_NAME_1,YOUR_VOLUME_NAME_2,...
 ```
 
-If we run 
+If we get pv in spring-petclinic namespace
+
 
 ```
-kubectl get pv -n spring-petclinic
-```
-
-We get back 
-
-```❯ k get pvc -n spring-petclinic
+❯ k get pvc -n spring-petclinic
 NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS              AGE
 data-customers-db-mysql-master-0   Bound    pvc-0e4f0a4d-ac26-4683-ab7b-9170388a18e2   8Gi        RWO            vsphere-with-kubernetes   24h
 data-customers-db-mysql-slave-0    Bound    pvc-6b68dcb4-0d79-4a83-b4e0-3455e41e1d25   8Gi        RWO            vsphere-with-kubernetes   24h
@@ -36,9 +35,6 @@ data-visits-db-mysql-slave-0       Bound    pvc-725bcdb2-b009-4a66-b98b-d1219ae9
 
 And a reminder of the pod names - we only care about the mysql pods since they are the pods that have pvc
 
-```
-kubectl get pods -n spring-petclinic
-```
 
 ```
 ❯ k get pods -n spring-petclinic
@@ -58,4 +54,10 @@ visits-service-7d6d4d99c-xhd7g       1/1     Running   2          24h
 So the annotate command would be
 
 ```
-kubectl -n spring-petclinic annotate pod/YOUR_POD_NAME backup.velero.io/backup-volumes=YOUR_VOLUME_NAME_1,YOUR_VOLUME_NAME_2,...
+kubectl -n spring-petclinic annotate pod/vets-db-mysql-master-0 backup.velero.io/backup-volumes=data-vets-db-mysql-master-0
+kubectl -n spring-petclinic annotate pod/vets-db-mysql-slave-0 backup.velero.io/backup-volumes=data-vets-db-mysql-slave-0
+kubectl -n spring-petclinic annotate pod/visits-db-mysql-master-0 backup.velero.io/backup-volumes=data-visits-db-mysql-master-0
+kubectl -n spring-petclinic annotate pod/visits-db-mysql-slave-0 backup.velero.io/backup-volumes=data-visits-db-mysql-slave-0
+kubectl -n spring-petclinic annotate pod/customers-db-mysql-master-0 backup.velero.io/backup-volumes=data-customers-db-mysql-master-0
+kubectl -n spring-petclinic annotate pod/customers-db-mysql-slave-0 backup.velero.io/backup-volumes=data-cusstomers-db-mysql-slave-0
+```
