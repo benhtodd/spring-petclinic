@@ -1,4 +1,4 @@
-#### MUCH MORE IS NEEDED TO GET Velero with RESTIC working this page is a work in progress. It is not complete yet. 
+#### Much more is needed to Get Velero with Restic working this page is a work in progress. It is not complete yet. 
 
 
 
@@ -54,10 +54,10 @@ visits-service-7d6d4d99c-xhd7g       1/1     Running   2          24h
 So the annotate command would be
 
 ```
-kubectl -n spring-petclinic annotate pod/vets-db-mysql-master-0 backup.velero.io/backup-volumes=data-vets-db-mysql-master-0
-kubectl -n spring-petclinic annotate pod/vets-db-mysql-slave-0 backup.velero.io/backup-volumes=data-vets-db-mysql-slave-0
-kubectl -n spring-petclinic annotate pod/visits-db-mysql-master-0 backup.velero.io/backup-volumes=data-visits-db-mysql-master-0
-kubectl -n spring-petclinic annotate pod/visits-db-mysql-slave-0 backup.velero.io/backup-volumes=data-visits-db-mysql-slave-0
-kubectl -n spring-petclinic annotate pod/customers-db-mysql-master-0 backup.velero.io/backup-volumes=data-customers-db-mysql-master-0
-kubectl -n spring-petclinic annotate pod/customers-db-mysql-slave-0 backup.velero.io/backup-volumes=data-cusstomers-db-mysql-slave-0
+kubectl -n spring-petclinic annotate --overwrite=true pod/vets-db-mysql-master-0 backup.velero.io/backup-volumes=data
+kubectl -n spring-petclinic annotate --overwrite=true pod/vets-db-mysql-slave-0 backup.velero.io/backup-volumes=data
+kubectl -n spring-petclinic annotate --overwrite=true pod/visits-db-mysql-master-0 backup.velero.io/backup-volumes=data
+kubectl -n spring-petclinic annotate --overwrite=true pod/visits-db-mysql-slave-0 backup.velero.io/backup-volumes=data
+kubectl -n spring-petclinic annotate --overwrite=true pod/customers-db-mysql-master-0 backup.velero.io/backup-volumes=data
+kubectl -n spring-petclinic annotate --overwrite=true pod/customers-db-mysql-slave-0 backup.velero.io/backup-volumes=data
 ```
