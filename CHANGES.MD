@@ -14,6 +14,9 @@ There is one file that needs to be modified for your environment
       freemium-account: true
 ```
 
+## If you are in a Livefire Class no need to do the step below
+
+
 You will want to change the value of **name:** to match the Application Name you want reflected in wavefront tracing.
 
 In ./spring-petclinic/k8s/ there are four yaml files that will need to be updated to reflect your image repo: 
