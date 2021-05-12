@@ -1,5 +1,12 @@
 #### Much more is needed to Get Velero with Restic working this page is a work in progress. It is not complete yet. 
 
+1. Enable DP on a cluster 
+
+```
+tmc dataprotection ...
+```
+
+
 
 
 To install Velero CLI on linux
@@ -61,3 +68,13 @@ kubectl -n spring-petclinic annotate --overwrite=true pod/visits-db-mysql-slave-
 kubectl -n spring-petclinic annotate --overwrite=true pod/customers-db-mysql-master-0 backup.velero.io/backup-volumes=data
 kubectl -n spring-petclinic annotate --overwrite=true pod/customers-db-mysql-slave-0 backup.velero.io/backup-volumes=data
 ```
+
+
+
+
+
+
+Source Doc:
+
+https://velero.io/blog/velero-1.5-for-and-by-community/
+https://velero.io/docs/v1.5/
