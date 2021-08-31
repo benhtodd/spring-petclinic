@@ -1,7 +1,8 @@
 #!/bin/bash
 SRC_PREFIX=benhtodd
 SRC_IMAGE_TAG=1.0
-TAR_PREFIX=harbor.local/petclinic
+#TAR_PREFIX=harbor.local/petclinic
+TAR_PREFIX=registry.lab.livefire.dev/observe
 TAR_IMAGE_TAG=1.0
 
 # echo rename {SRC_PREFIX}/api-gateway:${SRC_IMAGE_TAG}  to ${TAR_PREFIX}/api-gateway:${TAR_IMAGE_TAG}
